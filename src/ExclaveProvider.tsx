@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from "react";
+import { ReactNode } from "react";
 import { ExclaveContext } from "./ExclaveContext";
 
 export type ExclaveProviderProps<T extends HTMLElement> = {

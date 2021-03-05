@@ -1,6 +1,6 @@
 import { CSSProperties, useMemo, useState } from "react";
 import { ExclaveProvider } from "./ExclaveProvider";
-import { useExclave } from "./useExclave";
+import { Clip } from './Clip';
 
 export default {
   title: "Exclave",
@@ -9,17 +9,15 @@ export default {
 
 const contentStyle: CSSProperties = {
   width: 300,
-  height: 100,
+  height: 50,
   borderRadius: '8px',
-  marginBottom: '12px',
+  marginBottom: 10,
   boxShadow: '0px 0px 3px rgba(0,0,0,0.8)',
 };
 
 const Content = () => {
-  const { ref, style } = useExclave<HTMLDivElement>();
-
   return (
-    <div ref={ref} style={{ ...style, ...contentStyle }} />
+    <Clip style={contentStyle} />
   );
 };
 
@@ -28,8 +26,8 @@ const chevronStyle = (): CSSProperties => ({
   top: Math.random() * 300,
   left: Math.random() * 300,
   overflow: 'hidden',
-  transform: 'rotate(45deg)',
-  border: '3px solid #fff',
+  transform: `rotate(${Math.floor(Math.random() * 360)}deg)`,
+  // border: '3px solid #fff',
   height: 40,
   width: 40,
   backgroundColor: '#fff',
@@ -37,21 +35,12 @@ const chevronStyle = (): CSSProperties => ({
 });
 
 const Chevron = () => {
-  const { ref, style } = useExclave<HTMLDivElement>();
-
   const memoStyle = useMemo(() => {
     return chevronStyle();
   }, []);
 
   return (
-    <div style={{ ...memoStyle  }}>
-      <div ref={ref} style={{
-        ...style,
-        transform: 'rotate(-45deg) translateY(-50%)',
-        width: '200%',
-        height: '200%',
-      }} />
-    </div>
+    <Clip style={{ ...memoStyle  }} />
   );
 }
 
@@ -61,7 +50,8 @@ export const Exclave = () => {
   return (
     <ExclaveProvider
       container={ref}
-      backgroundImage="https://source.unsplash.com/random"
+      backgroundImage="https://pbs.twimg.com/media/Evc-sHpUUAAOdCt?format=jpg&name=4096x4096"
+      //"https://source.unsplash.com/random"
     >
       <div ref={setRef} style={{ position: 'relative', margin: '30px' }}>
         <Chevron />
@@ -70,6 +60,9 @@ export const Exclave = () => {
         <Chevron />
         <Chevron />
         <Chevron />
+        <Chevron />
+        <Content />
+        <Content />
         <Content />
         <Content />
         <Content />
