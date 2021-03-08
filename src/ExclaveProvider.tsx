@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from "react";
+import { ReactNode } from "react";
 import { ExclaveContext } from "./ExclaveContext";
 
 export type ExclaveProviderProps<T extends HTMLElement> = {
@@ -12,7 +12,7 @@ export const ExclaveProvider = <T extends HTMLElement>(props: ExclaveProviderPro
 
   const value = {
     backgroundImage,
-    rect: container?.getBoundingClientRect() ?? { width: 0, height: 0, top: 0, left: 0 },
+    rect: container?.getBoundingClientRect(),
   };
 
   return (

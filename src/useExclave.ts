@@ -10,7 +10,7 @@ export const useExclave = <T extends HTMLElement>(): UseExclaveOutput<T> => {
   const [item, setItem] = useState<T | null>(null);
   const exclave = useContext(ExclaveContext);
 
-  if (item == null) {
+  if (item == null || exclave == null) {
     return { style: {}, ref: setItem };
   }
 
@@ -23,11 +23,9 @@ export const useExclave = <T extends HTMLElement>(): UseExclaveOutput<T> => {
   const left = -1 * (itemLeft - exclave.rect.left);
 
   const style: CSSProperties = {
-    backgroundImage: `url(${exclave.backgroundImage})`,
+    backgroundImage: exclave.backgroundImage,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: `auto ${exclave.rect.height}px`,
-    // backgroundSize: `${exclave.rect.width}px auto`,
-    // backgroundSize: `${exclave.rect.width}px ${exclave.rect.height}px`,
+    backgroundSize: `${exclave.rect.width}px ${exclave.rect.height}px`,
     backgroundPosition: `top ${top}px left ${left}px`,
   };
 
